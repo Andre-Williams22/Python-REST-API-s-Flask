@@ -7,7 +7,7 @@ api = Api(app)
 
 
 def checkPostedData(postData, functionName):
-    if functionName == "add":
+    if functionName == "add" or functionName == "subtract" or functionName =='multiply' or functionName ==' divide':
         if "x" not in postData or "y" not in postData:
             return 301 # means there's a missing parameter
         else:
@@ -44,16 +44,93 @@ class Add(Resource):
 
 
 class Subtract(Resource):
-    pass
+    def post(self):
+        # resource subtract requested with POST
+        #1. get posted data 
+        postedData = request.get_json()
+
+        # step 1.5 verify validity of posted data 
+        status_code = checkPostedData(postedData, "subtract")
+        if status_code!=200:
+            retJson = {
+                "Message": "An error happened",
+                "Status Code": status_code
+            }
+            return jsonify(retJson)
+
+        # if I'm here then status_code == 200
+        x = postedData['x']
+        y = postedData['y']
+        x = int(x)
+        y = int(y)
+
+        # 2. add the posted data
+        tot = x-y
+        retMap = {
+            'Sum': tot,
+            'Status Code': 200
+        }
+        return jsonify(retMap)
 
 class Divide(Resource):
-    pass
+    def post(self):
+        # resource subtract requested with POST
+        #1. get posted data 
+        postedData = request.get_json()
+
+        # step 1.5 verify validity of posted data 
+        status_code = checkPostedData(postedData, "divide")
+        if status_code!=200:
+            retJson = {
+                "Message": "An error happened",
+                "Status Code": status_code
+            }
+            return jsonify(retJson)
+
+        # if I'm here then status_code == 200
+        x = postedData['x']
+        y = postedData['y']
+        x = int(x)
+        y = int(y)
+
+        # 2. add the posted data
+        tot = x-y
+        retMap = {
+            'Sum': tot,
+            'Status Code': 200
+        }
+        return jsonify(retMap)
 
 class Multiply(Resource):
-    pass
+    def post(self):
+        # resource subtract requested with POST
+        #1. get posted data 
+        postedData = request.get_json()
 
+        # step 1.5 verify validity of posted data 
+        status_code = checkPostedData(postedData, "multiply")
+        if status_code!=200:
+            retJson = {
+                "Message": "An error happened",
+                "Status Code": status_code
+            }
+            return jsonify(retJson)
+
+        # if I'm here then status_code == 200
+        x = postedData['x']
+        y = postedData['y']
+        x = int(x)
+        y = int(y)
+
+        # 2. add the posted data
+        tot = x*y
+        retMap = {
+            'Sum': tot,
+            'Status Code': 200
+        }
+        return jsonify(retMap)
 api.add_resource(Add, "/add")
-
+api.add_resource(Subtract, "/subtract") 
 @app.route('/')
 def hello_world():
     return 'Hello Andre'
