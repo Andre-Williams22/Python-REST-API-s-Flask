@@ -7,9 +7,16 @@ api = Api(app)
 
 
 def checkPostedData(postData, functionName):
-    if functionName == "add" or functionName == "subtract" or functionName =='multiply' or functionName ==' divide':
+    if functionName == "add" or functionName == "subtract" or functionName =='multiply':
         if "x" not in postData or "y" not in postData:
             return 301 # means there's a missing parameter
+        else:
+            return 200
+    elif functionName == 'divide':
+        if 'x' not in postData or 'y' not in postData:
+            return 301
+        elif int(postData['y']) ==0:
+            return 302
         else:
             return 200
     
@@ -94,7 +101,7 @@ class Divide(Resource):
         y = int(y)
 
         # 2. add the posted data
-        tot = x-y
+        tot = (x*1.0)/y
         retMap = {
             'Sum': tot,
             'Status Code': 200
@@ -131,6 +138,8 @@ class Multiply(Resource):
         return jsonify(retMap)
 api.add_resource(Add, "/add")
 api.add_resource(Subtract, "/subtract") 
+api.add_resource(Multiply, "/multiply")
+api.add_resource(Divide, "/divide")
 @app.route('/')
 def hello_world():
     return 'Hello Andre'
