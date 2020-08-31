@@ -145,6 +145,7 @@ def hello_world():
     return 'Hello Andre'
 
 
-
+# docker build -t dockerpython .
+# docker run -p 5000:5000 dockerpython
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
