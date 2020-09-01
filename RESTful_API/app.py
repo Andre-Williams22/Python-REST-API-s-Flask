@@ -147,5 +147,8 @@ def hello_world():
 
 # docker build -t dockerpython .
 # docker run -p 5000:5000 dockerpython
+
+# docker-compose build 
+# docker-compose up
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
