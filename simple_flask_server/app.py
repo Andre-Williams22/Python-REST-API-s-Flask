@@ -38,7 +38,7 @@ def nice():
 
     return jsonify(retJson)
 
-
-
+# In Vagrant
+# flask run --host=192.168.10.80
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5002)
+    app.run(host='0.0.0.0', port=5000)
