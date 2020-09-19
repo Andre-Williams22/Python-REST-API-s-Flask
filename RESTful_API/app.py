@@ -152,6 +152,6 @@ def hello_world():
 # docker-compose up
 
 # In Vagrant on VM 
-# flask run --host=192.168.10.80
+# flask run --host=0.0.0.0
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
