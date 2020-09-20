@@ -2,6 +2,8 @@ version: '3'
 
 services:
     web:
-        build: ./RESTful_API
+        build: ./restful_API
         ports: 
             - "5000:5000"
+
+

@@ -5,7 +5,6 @@ from flask_restful import Api, Resource
 app = Flask(__name__)
 api = Api(app)
 
-
 def checkPostedData(postData, functionName):
     if functionName == "add" or functionName == "subtract" or functionName =='multiply':
         if "x" not in postData or "y" not in postData:
