@@ -2,3 +2,5 @@
 Vagrantfile
 .vagrant/
 __pycache__/
+/image_classification_api/web
+image_classification_api/web
